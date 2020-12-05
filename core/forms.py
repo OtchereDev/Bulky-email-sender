@@ -5,13 +5,21 @@ from django.utils.translation import gettext_lazy as _
 
 
 class EmailCreateFom(ModelForm):
-    email_list=forms.CharField()
+    
+    email_list=forms.CharField(widget=forms.TextInput(attrs={'class':'form-control',
+                                                            'placeholder':'Enter ther list of subscribers here (seperated by ",")'}))
 
     class Meta:
         model=Emailer
-        exclude=['date_sent','email_reciever']
-
-    def save(self,*args, **kwargs):
-        # loop over the email list with split on "," and create email contact
-        # then the create the emailer object
-        pass
+        fields=[
+            'email_subject',
+            'attachment',
+            'email_body',
+        ]
+        widgets={     
+            'email_subject':forms.TextInput(attrs={'class': "form-control"}),
+            'email_body':forms.Textarea(attrs={'class': "form-control"}),
+                    
+          
+          
+        }

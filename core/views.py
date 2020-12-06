@@ -16,6 +16,7 @@ class EmailCreateView(FormView):
         email_subject=form.cleaned_data["email_subject"]
         attachment=form.cleaned_data["attachment"]
         email_body=form.cleaned_data["email_body"]
+        touch=get_object_or_404(EmailContacts,1)
 
         email_list={i.strip().lower() for i in mail.split(',') }
         reciever_set=[]
